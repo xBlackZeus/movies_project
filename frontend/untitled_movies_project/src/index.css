@@ -1,0 +1,61 @@
+body{
+  background-color:#3b3b3b;
+  font-family: "Roboto", sans-serif;
+  margin:0;
+}
+.nav{
+  background-color:#223231;
+}
+.navbarContainer{
+  padding-left: 150px;
+  padding-right:100px;
+  height:100px;
+  background-color:#223231;
+}
+.navbar{
+  color:white;
+  float:right;
+}
+#logo{
+  height:100px;
+  float:left;
+}
+#logo:hover{
+  cursor:pointer;
+}
+/* Reset default list styling */
+ul.navbar {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  background-color: inherit; /* Navbar background color */
+}
+
+/* Style the list items */
+ul.navbar li {
+  margin: 0;
+  padding: 0;
+  padding-top:30px;
+}
+
+/* Style the links inside the list items */
+ul.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition:all 0.5s;
+}
+
+/* Change the color on hover */
+ul.navbar li a:hover {
+  background-color: #111;
+  transition:all 0.5s;
+}
+
+/* Optional: Add active class for the current page */
+ul.navbar li a.active {
+  background-color: #4CAF50;
+}
