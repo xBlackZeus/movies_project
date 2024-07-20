@@ -23,8 +23,6 @@ class Landing(Resource):
 
 class Top_Ten(Resource):
 	def get(self):
-		
-
 		return {"data":"top ten"}
 
 
@@ -36,9 +34,16 @@ class Search(Resource):
 	def post(self):
 		global apikey
 		global i
+		print(apikey,i)
 		data = request.json
+		if len(data) < 2:
+			return {"Error":"no enugh parameters"}
 		title,ry,tp = "","",""
-		if data["title"]:
+	
+		if "type" not in data:
+			data["type"] = ""
+
+		if data["title"] != "":
 			title = data["title"] 
 		if data["ry"]:
 			ry = data["ry"]
@@ -46,7 +51,7 @@ class Search(Resource):
 			tp = data["type"]
 		if data["title"] == "" and data["ry"] == "":
 			return {"Error":"You have to insert title or relase data"}
-		res = rq.get("http://www.omdbapi.com/?i={3}&apikey={4}&s={0}&y={1}&plot=full".format(title,ry,apikey,i),proxies={"http":"127.0.0.1:8080"})
+		res = rq.get("http://www.omdbapi.com/?i={}&apikey={}&s={}&y={}".format(i,apikey,title,ry))
 		res = res.json()
 
 		if tp != "" and tp in ["movie","series"]:
@@ -64,11 +69,12 @@ class Search_details(Resource):
 	def post(self):
 		data = request.json
 		title = ""
+
 		if data["title"]:
 			title = data["title"] 
 		if data["title"] == "":
 			return {"Error":"You have to insert title"}
-		res = rq.get("http://www.omdbapi.com/?i={2}&apikey={1}&t={0}&plot=full".format(title,apikey,i))
+		res = rq.get("http://www.omdbapi.com/?i={}&apikey={}&t={}&plot=full".format(i,apikey,title))
 
 		res = res.json()
 		return {"data":res}
